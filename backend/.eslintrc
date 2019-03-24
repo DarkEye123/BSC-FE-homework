@@ -1,0 +1,23 @@
+{
+  "plugins": ["prettier"],
+  "rules": {
+    "max-len": [
+      "warn",
+      {
+        "code": 120
+      }
+    ],
+    "no-plusplus": "off",
+    "prettier/prettier": "error"
+  },
+  "parser": "babel-eslint",
+  "extends": ["airbnb-base"],
+  "env": {
+    "es6": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  }
+}

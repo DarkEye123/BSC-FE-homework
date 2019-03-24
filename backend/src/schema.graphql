@@ -1,0 +1,16 @@
+#import * from './generated/prisma.graphql'
+
+# this shadows User type from prisma/datamodel.prisma. You may use it to make some fields not accessible (like password)
+type User {
+  id: ID!
+  email: String!
+}
+
+type Mutation {
+  # '!' makes field mandatory, without it, mutation won't be even processed
+  signIn(email: String!, password: String!): User!
+}
+
+type Query {
+  currentUser: User
+}

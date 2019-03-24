@@ -1,0 +1,398 @@
+type AggregateNote {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+scalar Long
+
+type Mutation {
+  createNote(data: NoteCreateInput!): Note!
+  updateNote(data: NoteUpdateInput!, where: NoteWhereUniqueInput!): Note
+  updateManyNotes(data: NoteUpdateManyMutationInput!, where: NoteWhereInput): BatchPayload!
+  upsertNote(where: NoteWhereUniqueInput!, create: NoteCreateInput!, update: NoteUpdateInput!): Note!
+  deleteNote(where: NoteWhereUniqueInput!): Note
+  deleteManyNotes(where: NoteWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type Note {
+  id: ID!
+  tittle: String!
+  owner: User!
+}
+
+type NoteConnection {
+  pageInfo: PageInfo!
+  edges: [NoteEdge]!
+  aggregate: AggregateNote!
+}
+
+input NoteCreateInput {
+  tittle: String!
+  owner: UserCreateOneWithoutNotesInput!
+}
+
+input NoteCreateManyWithoutOwnerInput {
+  create: [NoteCreateWithoutOwnerInput!]
+  connect: [NoteWhereUniqueInput!]
+}
+
+input NoteCreateWithoutOwnerInput {
+  tittle: String!
+}
+
+type NoteEdge {
+  node: Note!
+  cursor: String!
+}
+
+enum NoteOrderByInput {
+  id_ASC
+  id_DESC
+  tittle_ASC
+  tittle_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type NotePreviousValues {
+  id: ID!
+  tittle: String!
+}
+
+input NoteScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  tittle: String
+  tittle_not: String
+  tittle_in: [String!]
+  tittle_not_in: [String!]
+  tittle_lt: String
+  tittle_lte: String
+  tittle_gt: String
+  tittle_gte: String
+  tittle_contains: String
+  tittle_not_contains: String
+  tittle_starts_with: String
+  tittle_not_starts_with: String
+  tittle_ends_with: String
+  tittle_not_ends_with: String
+  AND: [NoteScalarWhereInput!]
+  OR: [NoteScalarWhereInput!]
+  NOT: [NoteScalarWhereInput!]
+}
+
+type NoteSubscriptionPayload {
+  mutation: MutationType!
+  node: Note
+  updatedFields: [String!]
+  previousValues: NotePreviousValues
+}
+
+input NoteSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: NoteWhereInput
+  AND: [NoteSubscriptionWhereInput!]
+  OR: [NoteSubscriptionWhereInput!]
+  NOT: [NoteSubscriptionWhereInput!]
+}
+
+input NoteUpdateInput {
+  tittle: String
+  owner: UserUpdateOneRequiredWithoutNotesInput
+}
+
+input NoteUpdateManyDataInput {
+  tittle: String
+}
+
+input NoteUpdateManyMutationInput {
+  tittle: String
+}
+
+input NoteUpdateManyWithoutOwnerInput {
+  create: [NoteCreateWithoutOwnerInput!]
+  delete: [NoteWhereUniqueInput!]
+  connect: [NoteWhereUniqueInput!]
+  set: [NoteWhereUniqueInput!]
+  disconnect: [NoteWhereUniqueInput!]
+  update: [NoteUpdateWithWhereUniqueWithoutOwnerInput!]
+  upsert: [NoteUpsertWithWhereUniqueWithoutOwnerInput!]
+  deleteMany: [NoteScalarWhereInput!]
+  updateMany: [NoteUpdateManyWithWhereNestedInput!]
+}
+
+input NoteUpdateManyWithWhereNestedInput {
+  where: NoteScalarWhereInput!
+  data: NoteUpdateManyDataInput!
+}
+
+input NoteUpdateWithoutOwnerDataInput {
+  tittle: String
+}
+
+input NoteUpdateWithWhereUniqueWithoutOwnerInput {
+  where: NoteWhereUniqueInput!
+  data: NoteUpdateWithoutOwnerDataInput!
+}
+
+input NoteUpsertWithWhereUniqueWithoutOwnerInput {
+  where: NoteWhereUniqueInput!
+  update: NoteUpdateWithoutOwnerDataInput!
+  create: NoteCreateWithoutOwnerInput!
+}
+
+input NoteWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  tittle: String
+  tittle_not: String
+  tittle_in: [String!]
+  tittle_not_in: [String!]
+  tittle_lt: String
+  tittle_lte: String
+  tittle_gt: String
+  tittle_gte: String
+  tittle_contains: String
+  tittle_not_contains: String
+  tittle_starts_with: String
+  tittle_not_starts_with: String
+  tittle_ends_with: String
+  tittle_not_ends_with: String
+  owner: UserWhereInput
+  AND: [NoteWhereInput!]
+  OR: [NoteWhereInput!]
+  NOT: [NoteWhereInput!]
+}
+
+input NoteWhereUniqueInput {
+  id: ID
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  note(where: NoteWhereUniqueInput!): Note
+  notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Note]!
+  notesConnection(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NoteConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
+type Subscription {
+  note(where: NoteSubscriptionWhereInput): NoteSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type User {
+  id: ID!
+  email: String!
+  password: String!
+  notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Note!]
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  email: String!
+  password: String!
+  notes: NoteCreateManyWithoutOwnerInput
+}
+
+input UserCreateOneWithoutNotesInput {
+  create: UserCreateWithoutNotesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutNotesInput {
+  email: String!
+  password: String!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  email: String!
+  password: String!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateInput {
+  email: String
+  password: String
+  notes: NoteUpdateManyWithoutOwnerInput
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  password: String
+}
+
+input UserUpdateOneRequiredWithoutNotesInput {
+  create: UserCreateWithoutNotesInput
+  update: UserUpdateWithoutNotesDataInput
+  upsert: UserUpsertWithoutNotesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutNotesDataInput {
+  email: String
+  password: String
+}
+
+input UserUpsertWithoutNotesInput {
+  update: UserUpdateWithoutNotesDataInput!
+  create: UserCreateWithoutNotesInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  notes_every: NoteWhereInput
+  notes_some: NoteWhereInput
+  notes_none: NoteWhereInput
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}

@@ -1,0 +1,56 @@
+{
+  "name": "graphql-yoga-signup-example",
+  "version": "1.0.0",
+  "description": "example project for my blog post - how to do signup with graphql-yoga and prisma",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -e js,graphql -x babel-node src/index.js",
+    "dev": "nodemon -e js,graphql -x babel-node --inspect src/index.js",
+    "test": "jest",
+    "deploy": "prisma deploy prisma/prisma.yml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarkEye123/graphql-yoga-signup-example.git"
+  },
+  "keywords": [
+    "graphql",
+    "graphql-yoga",
+    "prisma",
+    "javascript",
+    "example-project"
+  ],
+  "author": "Matej Leško",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DarkEye123/graphql-yoga-signup-example/issues"
+  },
+  "homepage": "https://github.com/DarkEye123/graphql-yoga-signup-example#readme",
+  "dependencies": {
+    "@playlyfe/gql": "^2.6.1",
+    "bcryptjs": "2.4.3",
+    "cookie-session": "^1.3.3",
+    "dotenv": "^7.0.0",
+    "graphql": "^14.1.1",
+    "graphql-cli": "^3.0.11",
+    "graphql-yoga": "^1.17.4",
+    "helmet": "^3.16.0",
+    "jsonwebtoken": "8.5.1",
+    "nodemon": "^1.18.10",
+    "prisma": "^1.29.1",
+    "prisma-binding": "2.3.9"
+  },
+  "devDependencies": {
+    "jest-transform-graphql": "^2.1.0",
+    "jest": "^24.5.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-eslint": "^10.0.1",
+    "waait": "^1.0.4",
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.2",
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
