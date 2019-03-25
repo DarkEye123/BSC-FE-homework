@@ -4,7 +4,6 @@ import { AppErr } from '../../errors';
 
 function verifyPassword(password, hash) {
   const passwordIsSame = bcrypt.compareSync(password, hash);
-  console.log(password);
   if (!passwordIsSame) {
     throw new AppErr("passwords don't match (ಠ_ಠ)");
   }
