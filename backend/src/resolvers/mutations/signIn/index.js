@@ -1,10 +1,11 @@
 import bcrypt from 'bcryptjs';
 import { assignJWTToken } from '../../utils';
+import { AppErr } from '../../errors';
 
 function verifyPassword(password, hash) {
   const passwordIsSame = bcrypt.compareSync(password, hash);
   if (!passwordIsSame) {
-    throw Error('password does not match');
+    throw AppErr("passwords don't match (ಠ_ಠ)");
   }
 }
 
