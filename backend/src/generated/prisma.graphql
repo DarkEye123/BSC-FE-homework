@@ -39,7 +39,7 @@ interface Node {
 
 type Note {
   id: ID!
-  tittle: String!
+  title: String!
   owner: User!
 }
 
@@ -50,7 +50,7 @@ type NoteConnection {
 }
 
 input NoteCreateInput {
-  tittle: String!
+  title: String!
   owner: UserCreateOneWithoutNotesInput!
 }
 
@@ -60,7 +60,7 @@ input NoteCreateManyWithoutOwnerInput {
 }
 
 input NoteCreateWithoutOwnerInput {
-  tittle: String!
+  title: String!
 }
 
 type NoteEdge {
@@ -71,8 +71,8 @@ type NoteEdge {
 enum NoteOrderByInput {
   id_ASC
   id_DESC
-  tittle_ASC
-  tittle_DESC
+  title_ASC
+  title_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -81,7 +81,7 @@ enum NoteOrderByInput {
 
 type NotePreviousValues {
   id: ID!
-  tittle: String!
+  title: String!
 }
 
 input NoteScalarWhereInput {
@@ -99,20 +99,20 @@ input NoteScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  tittle: String
-  tittle_not: String
-  tittle_in: [String!]
-  tittle_not_in: [String!]
-  tittle_lt: String
-  tittle_lte: String
-  tittle_gt: String
-  tittle_gte: String
-  tittle_contains: String
-  tittle_not_contains: String
-  tittle_starts_with: String
-  tittle_not_starts_with: String
-  tittle_ends_with: String
-  tittle_not_ends_with: String
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
   AND: [NoteScalarWhereInput!]
   OR: [NoteScalarWhereInput!]
   NOT: [NoteScalarWhereInput!]
@@ -137,16 +137,16 @@ input NoteSubscriptionWhereInput {
 }
 
 input NoteUpdateInput {
-  tittle: String
+  title: String
   owner: UserUpdateOneRequiredWithoutNotesInput
 }
 
 input NoteUpdateManyDataInput {
-  tittle: String
+  title: String
 }
 
 input NoteUpdateManyMutationInput {
-  tittle: String
+  title: String
 }
 
 input NoteUpdateManyWithoutOwnerInput {
@@ -167,7 +167,7 @@ input NoteUpdateManyWithWhereNestedInput {
 }
 
 input NoteUpdateWithoutOwnerDataInput {
-  tittle: String
+  title: String
 }
 
 input NoteUpdateWithWhereUniqueWithoutOwnerInput {
@@ -196,20 +196,20 @@ input NoteWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  tittle: String
-  tittle_not: String
-  tittle_in: [String!]
-  tittle_not_in: [String!]
-  tittle_lt: String
-  tittle_lte: String
-  tittle_gt: String
-  tittle_gte: String
-  tittle_contains: String
-  tittle_not_contains: String
-  tittle_starts_with: String
-  tittle_not_starts_with: String
-  tittle_ends_with: String
-  tittle_not_ends_with: String
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
   owner: UserWhereInput
   AND: [NoteWhereInput!]
   OR: [NoteWhereInput!]

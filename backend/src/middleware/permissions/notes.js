@@ -1,3 +1,5 @@
+import { rule } from 'graphql-shield';
+
 const isNoteOwner = rule({ cache: 'strict' })(async (parent, { where: { id } }, ctx) => {
   const { userID } = ctx.request;
   try {
@@ -7,3 +9,5 @@ const isNoteOwner = rule({ cache: 'strict' })(async (parent, { where: { id } }, 
     return false;
   }
 });
+
+export { isNoteOwner };

@@ -7,6 +7,6 @@ type User {
 
 type Note {
   id: ID! @unique
-  tittle: String!
+  title: String!
   owner: User! @relation(name: "UserNote", onDelete: SET_NULL)
 }

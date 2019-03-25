@@ -13,4 +13,14 @@ type Mutation {
 
 type Query {
   currentUser: User
+  note(where: NoteWhereUniqueInput!): Note
+  notes(
+    where: NoteWhereInput
+    orderBy: NoteOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Note]!
 }

@@ -8,4 +8,4 @@ const isAuthenticatedUser = rule({ cache: 'contextual' })((parent, args, ctx) =>
   return true;
 });
 
-export default isAuthenticatedUser;
+export { isAuthenticatedUser };
