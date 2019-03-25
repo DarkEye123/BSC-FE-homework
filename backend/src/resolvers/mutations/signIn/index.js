@@ -4,13 +4,19 @@ import { AppErr } from '../../errors';
 
 function verifyPassword(password, hash) {
   const passwordIsSame = bcrypt.compareSync(password, hash);
+  console.log(password);
   if (!passwordIsSame) {
-    throw AppErr("passwords don't match (ಠ_ಠ)");
+    throw new AppErr("passwords don't match (ಠ_ಠ)");
   }
 }
 
-async function signIn(parent, { email }, ctx, info) {
-  registeredUser = await ctx.db.query.user({ where: { email } }, info);
+async function signIn(parent, { email, password }, ctx, info) {
+  const registeredUser = await ctx.prisma.query.user({ where: { email } }, info);
+  if (!registeredUser) {
+    throw new AppErr("user doesn't exist t(-.-t)");
+  }
+  const realUser = await ctx.prisma.query.user({ where: { email } }, '{password}');
+  verifyPassword(password, realUser.password);
   assignJWTToken(ctx.request.session, registeredUser.id);
   return registeredUser;
 }
