@@ -1,9 +1,9 @@
 export default {
   color: {
-    darkShades: '#40364B',
-    darkAccent: '#926968',
-    main: '#9CA6AC',
-    lightAccent: '#968368',
-    lightShades: '#F7F8F7',
+    darkShades: '#131112',
+    darkAccent: '#60656F',
+    main: '#279AF1',
+    lightAccent: '#C49991',
+    lightShades: '#F7F7FF',
   },
 };

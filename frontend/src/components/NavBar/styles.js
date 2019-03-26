@@ -1,15 +1,15 @@
 import styled from 'styled-components';
-import img from '../images/logo.png';
+import img from '../../images/logo.png';
 
 const Header = styled.header`
   width: 100%;
   width: -moz-available; /* WebKit-based browsers will ignore this. */
   width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
   width: fill-available;
-  position: fixed;
+  position: relative;
   top: 0;
-  transition: ${props => props.transition};
-  -webkit-transition: ${props => props.transition};
+  /* transition: ${props => props.transition}; */
+  /* -webkit-transition: ${props => props.transition}; */
   z-index: 1050;
 
   background-color: ${props => props.theme.color.darkShades};
@@ -51,7 +51,7 @@ const Header = styled.header`
         }
         &:after {
           height: 2px;
-          background: red;
+          background: ${props => props.theme.color.main};;
           content: '';
           width: 0;
           position: absolute;
