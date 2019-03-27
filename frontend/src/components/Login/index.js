@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { CenteredMain as Page, InputField } from '..';
+import { CenteredMain as Page, InputField, ErrorMessage } from '..';
 import { Mutation } from 'react-apollo';
 import { Form } from './styles';
 import LoginSchema from './validations';
@@ -23,7 +23,11 @@ const Login = () => (
   <Mutation mutation={LOGIN_MUTATION} update={update}>
     {(logIn, { data, loading, error }) => {
       if (loading) {
-        return <p>loading</p>;
+        return (
+          <Page>
+            <p>loading</p>
+          </Page>
+        );
       }
       return (
         <Formik
@@ -33,6 +37,7 @@ const Login = () => (
         >
           {() => (
             <Page>
+              <ErrorMessage error={error} />
               <Form>
                 <InputField label="Email" name="email" />
                 <InputField label="Password" name="password" />
