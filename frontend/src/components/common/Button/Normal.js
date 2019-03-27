@@ -2,25 +2,24 @@ import styled from 'styled-components';
 import Spinner from '../Spinner';
 
 const Button = styled.button`
-  /* max-width: 10rem; */
-  padding: 0 12px 0 12px;
-  height: 40px;
-  font-size: 2rem;
-  border-radius: 4px;
+  padding: 0 0.75rem 0 0.75rem;
+  height: 2rem;
+  font-size: 1rem;
   outline: none;
   border-width: 0px;
   line-height: 2rem;
   align-self: center;
   font-family: 'Roboto';
-  background-color: ${({ theme }) => theme.color.main};
+  background-color: transparent;
   letter-spacing: 0.6px;
   border-color: white;
   color: #fff;
   white-space: nowrap;
-  box-shadow: 0 2px 2px ${({ theme }) => theme.color.buttonShadeColor};
+  border: 1px solid ${({ theme }) => theme.color.main};
   letter-spacing: 0px;
-  transition: all 0.3s;
-  transition-property: box-shadow, letter-spacing;
+  text-shadow: 0 0;
+  transition: all 0.2s;
+  transition-property: text-shadow, letter-spacing;
   :hover:enabled {
     cursor: pointer;
   }
@@ -29,11 +28,13 @@ const Button = styled.button`
     box-shadow: 0 0px #666;
   }
   :enabled:hover {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.85);
     letter-spacing: 1px;
   }
   :active {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.85);
     box-shadow: 0 0;
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.1s;
   }
   .loading {
     background-color: #e6e6e6;

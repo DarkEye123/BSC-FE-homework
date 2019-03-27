@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { CenteredMain as Page, InputField, ErrorMessage } from '..';
+import { CenteredMain as Page, InputField, ErrorMessage, SpinningButton } from '..';
 import { Mutation } from 'react-apollo';
 import { Form } from './styles';
 import LoginSchema from './validations';
@@ -21,33 +21,26 @@ const handleOnSubmit = mutation => async values => {
 
 const Login = () => (
   <Mutation mutation={LOGIN_MUTATION} update={update}>
-    {(logIn, { data, loading, error }) => {
-      if (loading) {
-        return (
+    {(logIn, { data, loading, error }) => (
+      <Formik
+        initialValues={{ email: '', password: '' }}
+        validationSchema={LoginSchema}
+        onSubmit={handleOnSubmit(logIn)}
+      >
+        {() => (
           <Page>
-            <p>loading</p>
+            <ErrorMessage error={error} />
+            <Form>
+              <InputField label="Email" name="email" />
+              <InputField label="Password" name="password" />
+              <SpinningButton spin={loading} type="submit">
+                Sign{loading && 'ing'} In
+              </SpinningButton>
+            </Form>
           </Page>
-        );
-      }
-      return (
-        <Formik
-          initialValues={{ email: '', password: '' }}
-          validationSchema={LoginSchema}
-          onSubmit={handleOnSubmit(logIn)}
-        >
-          {() => (
-            <Page>
-              <ErrorMessage error={error} />
-              <Form>
-                <InputField label="Email" name="email" />
-                <InputField label="Password" name="password" />
-                <button type="submit">Sign In</button>
-              </Form>
-            </Page>
-          )}
-        </Formik>
-      );
-    }}
+        )}
+      </Formik>
+    )}
   </Mutation>
 );
 
