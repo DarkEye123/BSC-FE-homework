@@ -18,7 +18,6 @@ const App = () => (
           <div className="App">
             <Page />
             <NavBar />
-            <Login />
             <Routes />
           </div>
         </Router>
