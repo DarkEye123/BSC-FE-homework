@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const centeredCss = css`
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
