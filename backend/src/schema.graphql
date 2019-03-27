@@ -12,7 +12,7 @@ type Mutation {
 }
 
 type Query {
-  currentUser: User
+  activeUser: User
   note(where: NoteWhereUniqueInput!): Note
   notes(
     where: NoteWhereInput

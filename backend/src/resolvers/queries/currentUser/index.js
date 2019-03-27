@@ -1,4 +1,4 @@
-async function currentUser(parent, args, ctx, info) {
+async function activeUser(parent, args, ctx, info) {
   const { userID } = ctx.request;
   if (!userID) {
     return null;
@@ -6,4 +6,4 @@ async function currentUser(parent, args, ctx, info) {
   return ctx.prisma.query.user({ where: { id: userID } }, info);
 }
 
-export default currentUser;
+export default activeUser;

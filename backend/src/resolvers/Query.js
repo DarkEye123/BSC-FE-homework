@@ -1,6 +1,6 @@
 import { forwardTo } from 'prisma-binding';
-import currentUser from './queries/currentUser';
+import activeUser from './queries/currentUser';
 
-const Query = { currentUser, note: forwardTo('prisma'), notes: forwardTo('prisma') };
+const Query = { activeUser, note: forwardTo('prisma'), notes: forwardTo('prisma') };
 
 export default Query;
