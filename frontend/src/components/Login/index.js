@@ -21,19 +21,19 @@ const handleOnSubmit = mutation => async values => {
 
 const Login = () => (
   <Mutation mutation={LOGIN_MUTATION} update={update}>
-    {(logIn, { data, loading, error }) => (
+    {(logIn, { loading, error }) => (
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={LoginSchema}
         onSubmit={handleOnSubmit(logIn)}
       >
-        {() => (
+        {({ isValid }) => (
           <Page>
             <ErrorMessage error={error} />
             <Form>
               <InputField label="Email" name="email" />
               <InputField label="Password" name="password" />
-              <SpinningButton spin={loading} type="submit">
+              <SpinningButton disabled={!isValid || loading} spin={loading} type="submit">
                 Sign{loading && 'ing'} In
               </SpinningButton>
             </Form>
