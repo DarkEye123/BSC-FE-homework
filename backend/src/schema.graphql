@@ -9,6 +9,7 @@ type User {
 type Mutation {
   # '!' makes field mandatory, without it, mutation won't be even processed
   signIn(email: String!, password: String!): User!
+  logout: ID!
 }
 
 type Query {
