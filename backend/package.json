@@ -1,5 +1,5 @@
 {
-  "name": "graphql-yoga-signup-example",
+  "name": "BSC-BE-Homework",
   "version": "1.0.0",
   "description": "example project for my blog post - how to do signup with graphql-yoga and prisma",
   "main": "index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DarkEye123/graphql-yoga-signup-example.git"
+    "url": "git+https://github.com/DarkEye123/BSC-FE-homework.git"
   },
   "keywords": [
     "graphql",
@@ -23,9 +23,9 @@
   "author": "Matej Leško",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DarkEye123/graphql-yoga-signup-example/issues"
+    "url": "https://github.com/DarkEye123/BSC-FE-homework/issues"
   },
-  "homepage": "https://github.com/DarkEye123/graphql-yoga-signup-example#readme",
+  "homepage": "https://github.com/DarkEye123/BSC-FE-homework#readme",
   "dependencies": {
     "@playlyfe/gql": "^2.6.1",
     "bcryptjs": "2.4.3",
