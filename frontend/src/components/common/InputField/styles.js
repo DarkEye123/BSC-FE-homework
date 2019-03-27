@@ -37,9 +37,11 @@ const labelAnimation = css`
   transition: 0.3s;
   letter-spacing: 0px;
   font-size: 0.8rem;
+  color: ${({ theme }) => theme.color.lightAccent};
 `;
 
 const Input = styled(({ withValue, ...props }) => <Field {...props} />)`
+  color: ${({ theme }) => theme.color.lightShades}
   border-style: none none solid none;
   outline: none;
   border-bottom-color: #ccc;

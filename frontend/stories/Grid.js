@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Grid = styled.div`
   @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
+  padding: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
   grid-gap: 3rem;

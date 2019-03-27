@@ -12,7 +12,7 @@ const Header = styled.header`
   /* -webkit-transition: ${props => props.transition}; */
   z-index: 1050;
 
-  background-color: ${props => props.theme.color.darkShades};
+  background-color: ${props => props.theme.color.darkAccent};
   display: flex;
   box-shadow: 0 2px 7px 0 #111113;
 
@@ -45,6 +45,8 @@ const Header = styled.header`
         cursor: pointer;
         text-decoration: none;
         width: max-content;
+        text-shadow: 0 0px none;
+        transition: text-shadow 0.3s;
         @media (max-width: 700px) {
           font-size: 10px;
           padding: 0 10px;
@@ -66,6 +68,7 @@ const Header = styled.header`
         &:hover,
         &:focus {
           outline: none;
+          text-shadow: 0 0 5px rgba(0, 0, 0, 0.85);
           &:after {
             width: calc(100% - 60px);
           }
@@ -84,7 +87,7 @@ const Logo = styled.div`
     pointer-events: all;
     background-position: center;
     background-size: cover;
-    background-color: ${props => props.theme.color.darkShades};
+    background-color: ${props => props.theme.color.darkAccent};
     background-image: url(${img});
     background-repeat: no-repeat;
   }

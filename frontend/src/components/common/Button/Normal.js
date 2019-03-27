@@ -17,7 +17,7 @@ const Button = styled.button`
   border-color: white;
   color: #fff;
   white-space: nowrap;
-  box-shadow: 0 2px 2px #666;
+  box-shadow: 0 2px 2px ${({ theme }) => theme.color.buttonShadeColor};
   letter-spacing: 0px;
   transition: all 0.3s;
   transition-property: box-shadow, letter-spacing;
@@ -32,7 +32,7 @@ const Button = styled.button`
     letter-spacing: 1px;
   }
   :active {
-    box-shadow: 0 0px #666;
+    box-shadow: 0 0;
     transition: box-shadow 0.3s;
   }
   .loading {
