@@ -27,6 +27,7 @@ const InputField = styled.div`
     color: #ccc;
     transition: 0.3s;
     top: 0;
+    pointer-events: none;
   }
 `;
 

@@ -1,15 +1,24 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
 import theme from './theme';
 import { NavBar, Login } from './components';
+import createClient from './client';
+
+const client = createClient();
 
 const App = () => (
-  <ThemeProvider theme={theme}>
-    <div className="App">
-      <NavBar />
-      <Login />
-    </div>
-  </ThemeProvider>
+  <ApolloProvider client={client}>
+    <ApolloHooksProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <NavBar />
+          <Login />
+        </div>
+      </ThemeProvider>
+    </ApolloHooksProvider>
+  </ApolloProvider>
 );
 
 export default App;
