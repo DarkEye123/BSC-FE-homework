@@ -1,0 +1,13 @@
+import styled from 'styled-components';
+
+const Grid = styled.div`
+  @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+  grid-gap: 3rem;
+  font-family: 'Roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+`;
+
+export default Grid;
