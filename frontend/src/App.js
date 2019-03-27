@@ -2,9 +2,11 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
+import { BrowserRouter as Router } from 'react-router-dom';
 import theme from './theme';
 import { NavBar, Login, Page } from './components';
 import createClient from './client';
+import Routes from './routes';
 
 const client = createClient();
 
@@ -12,11 +14,14 @@ const App = () => (
   <ApolloProvider client={client}>
     <ApolloHooksProvider client={client}>
       <ThemeProvider theme={theme}>
-        <div className="App">
-          <Page />
-          <NavBar />
-          <Login />
-        </div>
+        <Router>
+          <div className="App">
+            <Page />
+            <NavBar />
+            <Login />
+            <Routes />
+          </div>
+        </Router>
       </ThemeProvider>
     </ApolloHooksProvider>
   </ApolloProvider>

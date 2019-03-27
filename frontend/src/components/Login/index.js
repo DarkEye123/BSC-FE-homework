@@ -2,9 +2,11 @@ import React from 'react';
 import { Formik } from 'formik';
 import { CenteredMain as Page, InputField, ErrorMessage, SpinningButton } from '..';
 import { Mutation } from 'react-apollo';
+import { withRouter } from 'react-router';
 import { Form } from './styles';
 import LoginSchema from './validations';
 import { ACTIVE_USER_QUERY, LOGIN_MUTATION } from '../../resolvers';
+import { PAGES } from '../../routes';
 
 const update = (cache, { data: { signIn } }) => {
   const data = { activeUser: signIn };
@@ -12,20 +14,20 @@ const update = (cache, { data: { signIn } }) => {
 };
 
 // Note: 'catch' statement is here due to red warnings made by graphql error response
-const handleOnSubmit = mutation => async values => {
+const handleOnSubmit = (mutation, history) => async values => {
   try {
     await mutation({ variables: { email: values.email, password: values.password } });
-    // Router.push(NOTES_PAGE);
+    history.push(PAGES.notes);
   } catch (e) {}
 };
 
-const Login = () => (
+const Login = ({ history }) => (
   <Mutation mutation={LOGIN_MUTATION} update={update}>
     {(logIn, { loading, error }) => (
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={LoginSchema}
-        onSubmit={handleOnSubmit(logIn)}
+        onSubmit={handleOnSubmit(logIn, history)}
       >
         {({ isValid }) => (
           <Page>
@@ -44,4 +46,4 @@ const Login = () => (
   </Mutation>
 );
 
-export default Login;
+export default withRouter(Login);
