@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
 import { BrowserRouter as Router } from 'react-router-dom';
 import theme from './theme';
-import { NavBar, Login, Page } from './components';
+import { NavBar, Page } from './components';
 import createClient from './client';
 import Routes from './routes';
 

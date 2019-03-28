@@ -9,7 +9,7 @@ import { Grid as Wrapper } from '../src/components/Notes/styles';
 storiesOf('Note', module).add('draggable note', () => (
   <Wrapper>
     <Grid>
-      <Draggable position={null}>
+      <Draggable>
         <span>
           <Note>
             #1 Buy Dog Food!!! <br />
