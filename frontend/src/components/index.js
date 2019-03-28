@@ -7,3 +7,5 @@ export { default as SpinningButton } from './common/Button/Spinning';
 export { default as ErrorMessage } from './common/ErrorMessage';
 export { default as Page } from './common/Page';
 export { default as Logout } from './Logout';
+export { default as Notes } from './Notes';
+export { Note } from './Notes/styles';

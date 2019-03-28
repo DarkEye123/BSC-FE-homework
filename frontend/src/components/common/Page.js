@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const Page = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
+  @import url('https://fonts.googleapis.com/css?family=Reenie+Beanie:regular');
 
   body {
     margin: 0;
