@@ -3,7 +3,9 @@ import { useQuery, useMutation } from 'react-apollo-hooks';
 import { CenteredMain as Page, ErrorMessage } from '..';
 import Draggable from 'react-draggable';
 import { NOTES_QUERY, DELETE_NOTE_MUTATION } from '../../resolvers';
-import { Grid, Note, Background } from './styles';
+import {
+  Grid, Note, Background, AddNote, Panel,
+} from './styles';
 import Trash from './Trash';
 
 const handleDelete = (mutation) => {
@@ -68,7 +70,10 @@ const Notes = () => {
           ))}
         </Grid>
       </Background>
-      <Trash name="trash" />
+      <Panel>
+        <Trash name="trash" />
+        <AddNote name="trash">+</AddNote>
+      </Panel>
     </Page>
   );
 };

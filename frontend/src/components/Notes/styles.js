@@ -84,10 +84,38 @@ const TrashSVG = styled.svg`
 `;
 
 const TrashWrapper = styled.div`
+  padding: 1rem;
   background-color: transparent;
   z-index: 20;
   position: relative;
   width: max-content;
 `;
 
-export { Grid, Note, Background, TrashSVG, TrashWrapper };
+const AddNote = styled.div`
+  width: 5rem;
+  height: 5rem;
+  color: greenyellow;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  font-size: 5rem;
+  cursor: pointer;
+  :hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.85);
+  }
+  text-shadow: 0 0;
+  transition: all 0.3s;
+  transition-property: transform, text-shadow;
+`;
+
+const Panel = styled.div`
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+`;
+
+export {
+  Grid, Note, Background, TrashSVG, TrashWrapper, AddNote, Panel,
+};
