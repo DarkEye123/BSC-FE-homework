@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 const zindex = css`
-  :focus,
   :hover {
     z-index: 5;
     transition: all 0.15s linear;
@@ -9,12 +8,14 @@ const zindex = css`
 `;
 
 const noteEvent = css`
-  :focus,
   :hover {
     box-shadow: 10px 10px 7px black;
     transform: scale(1.25);
-    cursor: move;
+    cursor: grab;
     z-index: 5;
+  }
+  :active {
+    cursor: move;
   }
 `;
 
@@ -33,10 +34,18 @@ const Note = styled.div`
   ${noteEvent}
 `;
 
+const Background = styled.div`
+  width: 90%;
+  height: 70%;
+  border: 2px dotted ${({ theme }) => theme.color.lightShades};
+  border-radius: 4px;
+`;
+
 const Grid = styled.div`
   position: relative;
-  display: flex;
+  display: grid;
   span {
+    width: 15rem;
     z-index: 0;
     transition: all 0.15s linear;
     ${zindex};
@@ -66,4 +75,19 @@ const Grid = styled.div`
   }
 `;
 
-export { Grid, Note };
+const TrashSVG = styled.svg`
+  &:hover {
+    fill: #d7d8d9;
+    cursor: p;
+  }
+  fill: #afafaf;
+`;
+
+const TrashWrapper = styled.div`
+  background-color: transparent;
+  z-index: 20;
+  position: relative;
+  width: max-content;
+`;
+
+export { Grid, Note, Background, TrashSVG, TrashWrapper };
