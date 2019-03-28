@@ -1,5 +1,5 @@
 {
-  "plugins": ["react", "react-hooks", "prettier"],
+  "plugins": ["react", "react-hooks"],
   "rules": {
     "react/jsx-filename-extension": [
       1,
@@ -15,8 +15,7 @@
     ],
     "no-plusplus": "off",
     "react/react-in-jsx-scope": "error",
-    "react-hooks/rules-of-hooks": "error",
-    "prettier/prettier": "error"
+    "react-hooks/rules-of-hooks": "error"
   },
   "settings": {
     "react": {
