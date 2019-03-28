@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import img from '../../images/logo.png';
 
 const Header = styled.header`
@@ -65,8 +65,7 @@ const Header = styled.header`
           left: 50%;
           top: 80%;
         }
-        &:hover,
-        &:focus {
+        &:hover{
           outline: none;
           text-shadow: 0 0 5px rgba(0, 0, 0, 0.85);
           &:after {
@@ -92,4 +91,31 @@ const Logo = styled.div`
     background-repeat: no-repeat;
   }
 `;
-export { Logo, Header };
+
+const Lang = styled.div`
+  position: absolute;
+  display: flex;
+  width: max-content;
+  height: 1rem;
+  top: 110%;
+  right: 0;
+  padding: 1rem;
+`;
+
+const LangButton = styled.button`
+  outline: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  :hover {
+    color: ${({ theme }) => theme.color.lightShades};
+  }
+  ${({ active, theme: { color } }) => active
+    && css`
+      color: ${color.lightShades};
+    `}
+`;
+
+export {
+  Logo, Header, Lang, LangButton,
+};
