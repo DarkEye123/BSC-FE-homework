@@ -7,9 +7,10 @@ type User {
 }
 
 type Mutation {
-  # '!' makes field mandatory, without it, mutation won't be even processed
+  # '!' makes field mandatory, without that specific field present, mutation won't be processed
   signIn(email: String!, password: String!): User!
   logout: ID!
+  deleteNote(where: NoteWhereUniqueInput!): Note
 }
 
 type Query {

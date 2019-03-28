@@ -12,6 +12,9 @@ const permissions = shield({
     note: and(rules.isAuthenticatedUser, rules.isNoteOwner),
     notes: and(rules.isAuthenticatedUser),
   },
+  Mutation: {
+    deleteNote: and(rules.isAuthenticatedUser, rules.isNoteOwner),
+  },
 });
 
 export { permissions, rules };
