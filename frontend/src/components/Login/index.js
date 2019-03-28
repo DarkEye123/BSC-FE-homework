@@ -1,8 +1,11 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { CenteredMain as Page, InputField, ErrorMessage, SpinningButton } from '..';
+import {
+  CenteredMain as Page, InputField, ErrorMessage, SpinningButton,
+} from '..';
 import { Mutation } from 'react-apollo';
 import { withRouter } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { Form } from './styles';
 import LoginSchema from './validations';
 import { ACTIVE_USER_QUERY, LOGIN_MUTATION } from '../../resolvers';
@@ -14,36 +17,39 @@ const update = (cache, { data: { signIn } }) => {
 };
 
 // Note: 'catch' statement is here due to red warnings made by graphql error response
-const handleOnSubmit = (mutation, history) => async values => {
+const handleOnSubmit = (mutation, history) => async (values) => {
   try {
     await mutation({ variables: { email: values.email, password: values.password } });
     history.push(PAGES.notes);
   } catch (e) {}
 };
 
-const Login = ({ history }) => (
-  <Mutation mutation={LOGIN_MUTATION} update={update}>
-    {(logIn, { loading, error }) => (
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validationSchema={LoginSchema}
-        onSubmit={handleOnSubmit(logIn, history)}
-      >
-        {({ isValid }) => (
-          <Page>
-            <ErrorMessage error={error} />
-            <Form>
-              <InputField label="Email" name="email" />
-              <InputField label="Password" name="password" />
-              <SpinningButton disabled={!isValid || loading} spin={loading} type="submit">
-                Sign{loading && 'ing'} In
-              </SpinningButton>
-            </Form>
-          </Page>
-        )}
-      </Formik>
-    )}
-  </Mutation>
-);
+const Login = ({ history }) => {
+  const { t } = useTranslation();
+  return (
+    <Mutation mutation={LOGIN_MUTATION} update={update}>
+      {(logIn, { loading, error }) => (
+        <Formik
+          initialValues={{ email: '', password: '' }}
+          validationSchema={LoginSchema}
+          onSubmit={handleOnSubmit(logIn, history)}
+        >
+          {({ isValid }) => (
+            <Page>
+              <ErrorMessage error={error} />
+              <Form>
+                <InputField label="Email" name="email" />
+                <InputField label="Password" name="password" />
+                <SpinningButton disabled={!isValid || loading} spin={loading} type="submit">
+                  {t(`Sign${loading ? 'ing' : ''} In`)}
+                </SpinningButton>
+              </Form>
+            </Page>
+          )}
+        </Formik>
+      )}
+    </Mutation>
+  );
+};
 
 export default withRouter(Login);

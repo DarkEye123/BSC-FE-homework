@@ -1,37 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Query } from 'react-apollo';
+import { useTranslation } from 'react-i18next';
 import { Header, Logo } from './styles';
 import { ACTIVE_USER_QUERY } from '../../resolvers';
 import { Logout } from '..';
 import { PAGES } from '../../routes';
 
-const NavBar = () => (
-  <Query query={ACTIVE_USER_QUERY}>
-    {({ data }) => (
-      <Header>
-        <Logo>
-          <Link to={PAGES.home} />
-        </Logo>
-        <nav>
-          <ul>
-            <li>
-              <Link to={PAGES.help}>Help</Link>
-            </li>
-            {!!data.activeUser && (
-              <>
-                <li>
-                  <Link to={PAGES.notes}>Notes</Link>
-                </li>
-                <li>
-                  <Logout>Logout</Logout>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
-      </Header>
-    )}
-  </Query>
-);
+const NavBar = () => {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  return (
+    <Query query={ACTIVE_USER_QUERY}>
+      {({ data }) => (
+        <Header>
+          <button onClick={() => changeLanguage('sk')}>sk</button>
+          <button onClick={() => changeLanguage('en')}>en</button>
+          <Logo>
+            <Link to={PAGES.home} />
+          </Logo>
+          <nav>
+            <ul>
+              <li>
+                <Link to={PAGES.help}>{t('Help')}</Link>
+              </li>
+              {!!data.activeUser && (
+                <>
+                  <li>
+                    <Link to={PAGES.notes}>{t('Notes')}</Link>
+                  </li>
+                  <li>
+                    <Logout>{t('Logout')}</Logout>
+                  </li>
+                </>
+              )}
+            </ul>
+          </nav>
+        </Header>
+      )}
+    </Query>
+  );
+};
 export default NavBar;
