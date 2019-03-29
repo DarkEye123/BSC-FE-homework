@@ -64,6 +64,7 @@ const Notes = () => {
           {notes.map(note => (
             <Draggable onStart={() => setNoteID(note.id)} onStop={handleStop} key={`${note.id}_draggable`}>
               <span>
+                <VisuallyHidden>Note</VisuallyHidden>
                 <Note>{note.text}</Note>
               </span>
             </Draggable>
@@ -72,7 +73,9 @@ const Notes = () => {
       </Background>
       <Panel>
         <Trash name="trash" />
-        <AddNote name="trash">+</AddNote>
+        <AddNote name="trash">
+          <VisuallyHidden>New Note</VisuallyHidden>+
+        </AddNote>
       </Panel>
     </Page>
   );
