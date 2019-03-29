@@ -15,7 +15,10 @@
     ],
     "no-plusplus": "off",
     "react/react-in-jsx-scope": "error",
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error",
+    "react/prop-types": "error",
+    "react/jsx-uses-vars": "error",
+    "react/jsx-uses-react": "error"
   },
   "settings": {
     "react": {
