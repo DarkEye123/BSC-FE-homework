@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-apollo-hooks';
 import { CenteredMain as Page, ErrorMessage } from '..';
-import Draggable from 'react-draggable';
-import { NOTES_QUERY, DELETE_NOTE_MUTATION } from '../../resolvers';
+import VisuallyHidden from '@reach/visually-hidden';
+import { NOTES_QUERY, DELETE_NOTE_MUTATION, CREATE_NOTE_MUTATION } from '../../resolvers';
 import {
-  Grid, Note, Background, AddNote, Panel,
+  Grid, Background, AddNote, Panel,
 } from './styles';
+import Note from './Note';
 import Trash from './Trash';
 
 const handleDelete = (mutation) => {
@@ -14,7 +15,7 @@ const handleDelete = (mutation) => {
     .catch((e) => {});
 };
 
-const updateNotes = (cache, { data }) => {
+const deleteUpdate = (cache, { data }) => {
   const newDataSet = { notes: null };
   const deletedNote = data.deleteNote.id;
   const oldData = cache.readQuery({ query: NOTES_QUERY });
@@ -22,24 +23,41 @@ const updateNotes = (cache, { data }) => {
   cache.writeQuery({ query: NOTES_QUERY, data: newDataSet });
 };
 
+const createUpdate = (cache, { data }) => {
+  const createdNote = data.createNote;
+  const cachedData = cache.readQuery({ query: NOTES_QUERY });
+  cachedData.notes.push(createdNote);
+  cache.writeQuery({ query: NOTES_QUERY, data: cachedData });
+};
+
 const Notes = () => {
   const { data, error, loading } = useQuery(NOTES_QUERY);
   const [noteID, setNoteID] = useState(null);
+  const [noteText, setNoteText] = useState(null);
   const deleteDataMutation = useMutation(DELETE_NOTE_MUTATION, {
     variables: { id: noteID },
-    update: updateNotes,
+    update: deleteUpdate,
     optimisticResponse: { deleteNote: { id: noteID, __typename: 'Note' } },
   });
+  const createNoteMutation = useMutation(CREATE_NOTE_MUTATION, {
+    // variables: { text: noteText },
+    variables: { text: 'test' },
+    update: createUpdate,
+    optimisticResponse: { createNote: { id: noteID, text: noteText, __typename: 'Note' } },
+  });
+
   const handleStop = async (e) => {
     setNoteID(null);
     const targetName = e.target.getAttribute('name');
     if (targetName) {
-      await handle[targetName]();
+      await deleteDataMutation();
     }
   };
-
-  const handle = {
-    trash: () => handleDelete(deleteDataMutation),
+  const handleCreateNote = async () => {
+    setNoteText('test');
+    try {
+      await createNoteMutation();
+    } catch (e) {}
   };
 
   if (loading) {
@@ -56,24 +74,18 @@ const Notes = () => {
       </Page>
     );
   }
-  const { notes } = data;
   return (
     <Page>
       <Background>
         <Grid data-testid="grid">
-          {notes.map(note => (
-            <Draggable onStart={() => setNoteID(note.id)} onStop={handleStop} key={`${note.id}_draggable`}>
-              <span>
-                <VisuallyHidden>Note</VisuallyHidden>
-                <Note>{note.text}</Note>
-              </span>
-            </Draggable>
+          {data.notes.map(note => (
+            <Note key={note.id} note={note} onStart={() => setNoteID(note.id)} onStop={handleStop} />
           ))}
         </Grid>
       </Background>
       <Panel>
         <Trash name="trash" />
-        <AddNote name="trash">
+        <AddNote onClick={handleCreateNote} name="trash">
           <VisuallyHidden>New Note</VisuallyHidden>+
         </AddNote>
       </Panel>
