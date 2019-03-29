@@ -1,11 +1,13 @@
 import React from 'react';
+import VisuallyHidden from '@reach/visually-hidden';
+import Draggable from 'react-draggable';
+import { Note as StyledNote } from './styles';
 
-const Note = ({
-  onStart, onStop, text, id,
-}) => (
-  <Draggable onStart={onStart} onStop={onStop} key={id}>
+const Note = ({ onStart, onStop, note }) => (
+  <Draggable onStart={onStart} onStop={onStop}>
     <span>
-      <Note>{text}</Note>
+      <VisuallyHidden>Note</VisuallyHidden>
+      <StyledNote>{note.text}</StyledNote>
     </span>
   </Draggable>
 );
