@@ -10,10 +10,11 @@ const rules = {
 const permissions = shield({
   Query: {
     note: and(rules.isAuthenticatedUser, rules.isNoteOwner),
-    notes: and(rules.isAuthenticatedUser),
+    notes: rules.isAuthenticatedUser,
   },
   Mutation: {
     deleteNote: and(rules.isAuthenticatedUser, rules.isNoteOwner),
+    createNote: rules.isAuthenticatedUser,
   },
 });
 
