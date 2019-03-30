@@ -10,3 +10,4 @@ export { default as Logout } from './Logout';
 export { default as Notes } from './Notes';
 export { default as NoteModal } from './NoteModal';
 export { Note } from './Notes/styles';
+export {default as Help } from './Help';
