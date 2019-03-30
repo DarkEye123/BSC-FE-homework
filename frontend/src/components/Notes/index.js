@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-apollo-hooks';
 import { CenteredMain as Page, ErrorMessage } from '..';
 import VisuallyHidden from '@reach/visually-hidden';
-import { NOTES_QUERY, DELETE_NOTE_MUTATION, CREATE_NOTE_MUTATION } from '../../resolvers';
+import { useTranslation } from 'react-i18next';
 import {
   Grid, Background, AddNote, Panel,
 } from './styles';
@@ -31,6 +31,7 @@ const createUpdate = (cache, { data }) => {
 };
 
 const Notes = () => {
+  const { t } = useTranslation();
   const { data, error, loading } = useQuery(NOTES_QUERY);
   const [noteID, setNoteID] = useState(null);
   const [noteText, setNoteText] = useState(null);
@@ -63,7 +64,7 @@ const Notes = () => {
   if (loading) {
     return (
       <Page>
-        <p>Loading</p>
+        <p>{t('Loading')}</p>
       </Page>
     );
   }
@@ -85,8 +86,7 @@ const Notes = () => {
       </Background>
       <Panel>
         <Trash name="trash" />
-        <AddNote onClick={handleCreateNote} name="trash">
-          <VisuallyHidden>New Note</VisuallyHidden>+
+          <VisuallyHidden>{t('New Note')}</VisuallyHidden>+
         </AddNote>
       </Panel>
     </Page>

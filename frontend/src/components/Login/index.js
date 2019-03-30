@@ -24,6 +24,7 @@ const handleOnSubmit = (mutation, history) => async (values) => {
   } catch (e) {}
 };
 
+// eslint-disable-next-line react/prop-types
 const Login = ({ history }) => {
   const { t } = useTranslation();
   return (
