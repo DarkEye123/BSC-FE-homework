@@ -61,6 +61,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
+    "cy": "cypress run --browser chrome",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
