@@ -46,6 +46,13 @@ You can run them by:
 npm run cy
 ```
 
+#### storybook 
+This project has its own storybook included.
+To see it, run
+```
+npm run storybook
+```
+
 ### Running BE
 
 Go to the fronted directory and run
