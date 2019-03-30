@@ -13,8 +13,25 @@ also via specific env key.
 
 FE has small suite of cypress tests and an example of unit-test for Login.
 
-### Running FE
+### Running BE
 
+Go to the fronted directory and run
+
+```
+npm install
+npm run dev
+```
+
+this launches graphql-yoga server running on [http://localhost:4000](http://localhost:4000)
+You can try some queries there directly.
+
+**Note
+in such a case, be sure you will set
+`"request.credentials": "include"`
+in the service settings available in the browser. This will enable sign in functionality.
+
+### Running FE
+You need to have running yoga-server before this step.
 Go to the fronted directory and run
 
 ```
@@ -55,26 +72,9 @@ To see it, run
 npm run storybook
 ```
 
-### Running BE
-
-Go to the fronted directory and run
-
-```
-npm install
-npm run dev
-```
-
-this launches graphql-yoga server running on [http://localhost:4000](http://localhost:4000)
-You can try some queries there directly.
-
-\*\*Note
-in such a case, be sure you will set
-`"request.credentials": "include"`
-in the service settings available in the browser. This will enable sign in functionality.
-
 ### Why is .env here?
 
 This is just example app. To ease the usage for the reviewer I included it. Be aware, that it considered as a very bad idea for the production.
 
-\*\* Note
+**Note
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
