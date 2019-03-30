@@ -6,6 +6,7 @@
   "dependencies": {
     "@reach/visually-hidden": "^0.1.2",
     "apollo-boost": "^0.3.1",
+    "cypress": "^3.2.0",
     "formik": "^1.5.1",
     "graphql": "^14.2.0",
     "graphql-tag": "^2.10.1",
@@ -59,6 +60,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "cypress:open": "cypress open",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import { useTranslation } from 'react-i18next';
-import {
-  Header, Logo, Lang, LangButton,
-} from './styles';
+import { Header, Logo, Lang, LangButton } from './styles';
 import { ACTIVE_USER_QUERY } from '../../resolvers';
 import { Logout } from '..';
 import { PAGES } from '../../routes';
@@ -12,7 +10,7 @@ import { PAGES } from '../../routes';
 const NavBar = () => {
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
+  const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
 
@@ -44,7 +42,7 @@ const NavBar = () => {
             <LangButton active={i18n.language === 'sk'} onClick={() => changeLanguage('sk')}>
               sk
             </LangButton>
-            <LangButton active={i18n.language === 'en'} onClick={() => changeLanguage('en')}>
+            <LangButton active={i18n.language !== 'sk'} onClick={() => changeLanguage('en')}>
               en
             </LangButton>
           </Lang>
