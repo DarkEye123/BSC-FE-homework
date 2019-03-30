@@ -46,6 +46,7 @@ const Background = styled.div`
 const Grid = styled.div`
   position: relative;
   display: grid;
+  grid-row-gap: 3rem;
   span {
     width: 15rem;
     z-index: 0;

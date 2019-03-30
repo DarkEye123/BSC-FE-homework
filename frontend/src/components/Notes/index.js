@@ -29,9 +29,13 @@ const createUpdate = (cache, { data }) => {
 
 const Notes = () => {
   const { t } = useTranslation();
-  const { data, error, loading } = useQuery(NOTES_QUERY);
+
   const [noteID, setNoteID] = useState(null);
+  const [noteText, setNoteText] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [onConfirm, setOnConfirm] = useState(null);
+
+  const { data, error, loading } = useQuery(NOTES_QUERY);
   const deleteNoteMutation = useMutation(DELETE_NOTE_MUTATION, {
     variables: { id: noteID },
     update: deleteUpdate,
@@ -42,6 +46,23 @@ const Notes = () => {
   });
   const updateNoteMutation = useMutation(UPDATE_NOTE_MUTATION);
 
+  const mutateCreate = async (text) => {
+    try {
+      await createNoteMutation({
+        variables: { text },
+        optimisticResponse: { createNote: { id: noteID, text, __typename: 'Note' } },
+      });
+    } catch (e) {}
+  };
+  const mutateUpdate = id => async (text) => {
+    try {
+      await updateNoteMutation({
+        variables: { id, text },
+        optimisticResponse: { updateNote: { id, text, __typename: 'Note' } },
+      });
+    } catch (e) {}
+  };
+
   const handleStop = async (e) => {
     setNoteID(null);
     const targetName = e.target.getAttribute('name');
@@ -51,27 +72,20 @@ const Notes = () => {
         .catch(() => {});
     }
   };
-  const handleCreateNote = async (text) => {
-    try {
-      await createNoteMutation({
-        variables: { text },
-        optimisticResponse: { createNote: { id: noteID, text, __typename: 'Note' } },
-      });
-    } catch (e) {}
-  };
-  const handleUpdate = async (text) => {
-    try {
-      await updateNoteMutation({
-        variables: { id: noteID, text },
-        optimisticResponse: { updateNote: { id: noteID, text, __typename: 'Note' } },
-      });
-    } catch (e) {}
-  };
-  let onConfirm = handleCreateNote;
-  const handleDoubleClick = id => () => {
-    onConfirm = handleUpdate;
+  const handleDoubleClick = note => () => {
+    setOnConfirm(() => mutateUpdate(note.id));
     setShowModal(true);
-    setNoteID(id);
+    setNoteText(note.text);
+    setNoteID(note.id);
+  };
+  const handleAddNote = () => {
+    setOnConfirm(() => mutateCreate);
+    setShowModal(true);
+  };
+  const onDismiss = () => {
+    setNoteText(null);
+    setNoteID(null);
+    setShowModal(false);
   };
 
   if (loading) {
@@ -95,7 +109,7 @@ const Notes = () => {
           {data.notes.map(note => (
             <Note
               key={note.id}
-              onDoubleClick={handleDoubleClick(note.id)}
+              onDoubleClick={handleDoubleClick(note)}
               note={note}
               onStart={() => setNoteID(note.id)}
               onStop={handleStop}
@@ -105,11 +119,11 @@ const Notes = () => {
       </Background>
       <Panel>
         <Trash name="trash" />
-        <AddNote onClick={() => setShowModal(true)}>
+        <AddNote onClick={handleAddNote}>
           <VisuallyHidden>{t('New Note')}</VisuallyHidden>+
         </AddNote>
       </Panel>
-      <NoteModal isOpen={showModal} onDismiss={() => setShowModal(false)} onConfirm={onConfirm} />
+      <NoteModal text={noteText} isOpen={showModal} onDismiss={onDismiss} onConfirm={onConfirm} />
     </Page>
   );
 };

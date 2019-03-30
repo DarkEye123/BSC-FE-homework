@@ -6,10 +6,13 @@ import { Button } from '..';
 
 const DEFAULT_TEXT = 'Write Here';
 
-const Modal = ({ isOpen, onDismiss, onConfirm }) => {
+const Modal = ({
+  isOpen, onDismiss, onConfirm, text,
+}) => {
   const el = createRef(null);
-  const [noteText, setNoteText] = useState(DEFAULT_TEXT);
   const { t } = useTranslation();
+  const [noteText, setNoteText] = useState(DEFAULT_TEXT);
+
   const handleCloseModal = (event) => {
     setNoteText(DEFAULT_TEXT);
     if (onDismiss) {
@@ -17,6 +20,7 @@ const Modal = ({ isOpen, onDismiss, onConfirm }) => {
       onDismiss();
     }
   };
+
   return (
     <StyledModal
       className="ReactModal"
@@ -25,8 +29,13 @@ const Modal = ({ isOpen, onDismiss, onConfirm }) => {
       closeTimeoutMS={350}
       onRequestClose={handleCloseModal}
     >
-      <StyledNote contentEditable suppressContentEditableWarning={true} onClick={() => setNoteText('')} ref={el}>
-        {t(noteText)}
+      <StyledNote
+        contentEditable
+        suppressContentEditableWarning={true}
+        onClick={() => setNoteText(text || '')}
+        ref={el}
+      >
+        {text || t(noteText)}
       </StyledNote>
       <Button
         onClick={(e) => {
@@ -40,10 +49,15 @@ const Modal = ({ isOpen, onDismiss, onConfirm }) => {
   );
 };
 
+Modal.defaultProps = {
+  onConfirm: () => {},
+};
+
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
+  text: PropTypes.string,
   onDismiss: PropTypes.func,
-  onConfirm: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func,
 };
 
 export default Modal;
