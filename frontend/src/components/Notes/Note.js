@@ -9,12 +9,15 @@ const Note = ({
 }) => {
   const { t } = useTranslation();
   return (
-  <Draggable onStart={onStart} onStop={onStop}>
-    <span>
+    <Draggable onStart={onStart} onStop={onStop}>
+      <span>
         <VisuallyHidden>{t('Note')}</VisuallyHidden>
-    </span>
-  </Draggable>
-);
+        <StyledNote contentEditable suppressContentEditableWarning={true} onDoubleClick={onDoubleClick}>
+          {note.text}
+        </StyledNote>
+      </span>
+    </Draggable>
+  );
 };
 
 export default Note;

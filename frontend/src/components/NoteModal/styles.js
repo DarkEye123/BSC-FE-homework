@@ -57,9 +57,9 @@ const StyledModal = styled(ReactModalAdapter)`
 
 const StyledNote = styled(Note)`
   transform: rotate(8deg);
+  white-space: pre-line;
   :hover,
   :focus {
-    outline: none;
     cursor: text;
     box-shadow: 10px 10px 7px black;
     transform: scale(1.25);

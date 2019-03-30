@@ -20,6 +20,8 @@ const noteEvent = css`
 `;
 
 const Note = styled.div`
+  white-space: pre-wrap;
+  outline: none;
   background-color: ${({ theme }) => theme.color.main};
   font-family: 'Reenie Beanie', 'Roboto', sans-serif;
   font-size: 1.8rem;

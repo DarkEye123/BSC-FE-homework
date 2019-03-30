@@ -25,7 +25,7 @@ const Modal = ({ isOpen, onDismiss, mutate }) => {
         }
       }}
     >
-      <StyledNote onClick={() => setNoteText('')} contentEditable suppressContentEditableWarning={true} ref={el}>
+      <StyledNote contentEditable suppressContentEditableWarning={true} onClick={() => setNoteText('')} ref={el}>
         {t(noteText)}
       </StyledNote>
       <Button>{t('Confirm')}</Button>
