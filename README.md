@@ -1,9 +1,9 @@
 This application was developed as a part of an interview process for Banking Software Company(BSC).
 
 There are two main parts. The backend part is developed using [graphql-yoga](https://github.com/prisma/graphql-yoga/) and [prisma-binding](https://github.com/prisma/prisma-binding). The database is using Prisma free tier service.
-The service is available on [app.prisma.io](app.prisma.io). The backend is rather simplified. It provides necessary CRUD operations for Notes and Sign In\-Log Out functionality with signed Cookies.
+The service is available on [app.prisma.io](app.prisma.io). The backend is rather simplified. It provides necessary CRUD operations for Notes and Sign In/Log Out functionality with signed cookies.
 
-Frontend part is done in Reactjs using CRA. I was thinking about Next.js and SSR but for this sort of application it would be too big overhead.
+Frontend part is done in Reactjs using CRA. I was thinking about Next.js and SSR, but for this sort of application it would be too big overhead.
 
 Both parties communicate with each other using GraphQL.
 Frontend part is accessible on [http://localhost:9000](http://localhost:9000), backend on [http://localhost:4000](http://localhost:4000).
