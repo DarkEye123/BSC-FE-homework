@@ -47,9 +47,13 @@ const Header = styled.header`
         width: max-content;
         text-shadow: 0 0px none;
         transition: text-shadow 0.3s;
-        @media (max-width: 700px) {
-          font-size: 10px;
-          padding: 0 10px;
+        @media (max-width: 780px) {
+          font-size: 1rem;
+          padding: 1rem 1rem;
+        }
+         @media (max-width: 500px) {
+          font-size: 0.5rem;
+          padding: 1rem 0.5rem;
         }
         &:after {
           height: 2px;
