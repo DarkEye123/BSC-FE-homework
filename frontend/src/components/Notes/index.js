@@ -3,12 +3,8 @@ import { useQuery, useMutation } from 'react-apollo-hooks';
 import { CenteredMain as Page, ErrorMessage, NoteModal } from '..';
 import VisuallyHidden from '@reach/visually-hidden';
 import { useTranslation } from 'react-i18next';
-import {
-  NOTES_QUERY, DELETE_NOTE_MUTATION, CREATE_NOTE_MUTATION, UPDATE_NOTE_MUTATION,
-} from '../../resolvers';
-import {
-  Grid, Background, AddNote, Panel,
-} from './styles';
+import { NOTES_QUERY, DELETE_NOTE_MUTATION, CREATE_NOTE_MUTATION, UPDATE_NOTE_MUTATION } from '../../resolvers';
+import { Grid, Background, AddNote, Panel } from './styles';
 import Note from './Note';
 import Trash from './Trash';
 
@@ -35,7 +31,7 @@ const Notes = () => {
   const [showModal, setShowModal] = useState(false);
   const [onConfirm, setOnConfirm] = useState(null);
 
-  const { data, error, loading } = useQuery(NOTES_QUERY);
+  const { data, error, loading } = useQuery(NOTES_QUERY, { fetchPolicy: 'cache-and-network' });
   const deleteNoteMutation = useMutation(DELETE_NOTE_MUTATION, {
     variables: { id: noteID },
     update: deleteUpdate,
@@ -46,7 +42,7 @@ const Notes = () => {
   });
   const updateNoteMutation = useMutation(UPDATE_NOTE_MUTATION);
 
-  const mutateCreate = async (text) => {
+  const mutateCreate = async text => {
     try {
       await createNoteMutation({
         variables: { text },
@@ -54,7 +50,7 @@ const Notes = () => {
       });
     } catch (e) {}
   };
-  const mutateUpdate = id => async (text) => {
+  const mutateUpdate = id => async text => {
     try {
       await updateNoteMutation({
         variables: { id, text },
@@ -63,7 +59,7 @@ const Notes = () => {
     } catch (e) {}
   };
 
-  const handleStop = async (e) => {
+  const handleStop = async e => {
     setNoteID(null);
     const targetName = e.target.getAttribute('name');
     if (targetName) {
