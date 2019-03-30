@@ -1,5 +1,5 @@
 {
-  "plugins": ["react", "react-hooks"],
+  "plugins": ["react", "react-hooks", "prettier"],
   "rules": {
     "react/jsx-filename-extension": [
       1,
@@ -18,7 +18,11 @@
     "react-hooks/rules-of-hooks": "error",
     "react/prop-types": "error",
     "react/jsx-uses-vars": "error",
-    "react/jsx-uses-react": "error"
+    "react/jsx-uses-react": "error",
+    "prettier/prettier": "error",
+    "arrow-parens": "off",
+    "object-curly-newline": "off",
+    "no-empty": "off"
   },
   "settings": {
     "react": {
