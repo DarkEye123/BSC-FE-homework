@@ -14,6 +14,7 @@ const permissions = shield({
   },
   Mutation: {
     deleteNote: and(rules.isAuthenticatedUser, rules.isNoteOwner),
+    updateNote: and(rules.isAuthenticatedUser, rules.isNoteOwner),
     createNote: rules.isAuthenticatedUser,
   },
 });

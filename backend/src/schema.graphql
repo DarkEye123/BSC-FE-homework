@@ -11,6 +11,7 @@ type Mutation {
   signIn(email: String!, password: String!): User!
   logout: ID!
   deleteNote(where: NoteWhereUniqueInput!): Note
+  updateNote(data: NoteUpdateInput!, where: NoteWhereUniqueInput!): Note
   createNote(text: String!): Note!
 }
 

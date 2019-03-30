@@ -8,6 +8,7 @@ const Mutation = {
   logout,
   createNote,
   deleteNote: forwardTo('prisma'),
+  updateNote: forwardTo('prisma'),
 };
 
 export default Mutation;
