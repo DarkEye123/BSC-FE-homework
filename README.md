@@ -46,9 +46,11 @@ You can run them by:
 npm run cy
 ```
 
-#### storybook 
+#### storybook
+
 This project has its own storybook included.
 To see it, run
+
 ```
 npm run storybook
 ```
