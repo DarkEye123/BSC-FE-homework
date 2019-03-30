@@ -1,68 +1,78 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application was developed as a part of an interview process for Banking Software Company(BSC).
 
-## Available Scripts
+There are two main parts. The backend part is developed using [graphql-yoga](https://github.com/prisma/graphql-yoga/) and [prisma-binding](https://github.com/prisma/prisma-binding). The database is using Prisma free tier service.
+The service is available on [app.prisma.io](app.prisma.io). The backend is rather simplified. It provides necessary CRUD operations for Notes and Sign In/Log Out functionality with signed cookies.
 
-In the project directory, you can run:
+Frontend part is done in Reactjs using CRA. I was thinking about Next.js and SSR, but for this sort of application it would be too big overhead.
 
-### `npm start`
+Both parties communicate with each other using GraphQL.
+Frontend part is accessible on [http://localhost:9000](http://localhost:9000), backend on [http://localhost:4000](http://localhost:4000).
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Cookies used in this app are client side. They are secured by APP_SECRET and COOKIE_SECRET. Communication with Prisma server is secured
+also via specific env key.
+
+FE has small suite of cypress tests and an example of unit-test for Login.
+
+### Running FE
+
+Go to the fronted directory and run
+
+```
+npm install
+npm start
+```
+
+This will run the app in the development mode.<br>
+Open [http://localhost:9000](http://localhost:9000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+#### Running tests
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+There is an example of unit-test for Sign In page with mocked mutations.
+to run it write
 
-### `npm run build`
+```
+npm test
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+this launches the test runner in the interactive watch mode.<br>
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+I also included [Cypress](https://www.cypress.io/) tests
+You can run them by:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm run cy
+```
 
-### `npm run eject`
+#### storybook 
+This project has its own storybook included.
+To see it, run
+```
+npm run storybook
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Running BE
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Go to the fronted directory and run
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm install
+npm run dev
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+this launches graphql-yoga server running on [http://localhost:4000](http://localhost:4000)
+You can try some queries there directly.
 
-## Learn More
+\*\*Note
+in such a case, be sure you will set
+`"request.credentials": "include"`
+in the service settings available in the browser. This will enable sign in functionality.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Why is .env here?
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This is just example app. To ease the usage for the reviewer I included it. Be aware, that it considered as a very bad idea for the production.
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+\*\* Note
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
