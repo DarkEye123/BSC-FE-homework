@@ -78,6 +78,7 @@ describe('user tests suite', () => {
   it('can change language', () => {
     cy.visit('http://localhost:9000/');
     cy.contains('sk').click();
+    cy.wait(500);
     cy.get('form > button').should('have.text', 'Prihlásiť sa');
   });
 
