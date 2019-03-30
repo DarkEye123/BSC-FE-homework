@@ -1,8 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import {
-  CenteredMain as Page, InputField, ErrorMessage, SpinningButton,
-} from '..';
+import { CenteredMain as Page, InputField, ErrorMessage, SpinningButton } from '..';
 import { Mutation } from 'react-apollo';
 import { withRouter } from 'react-router';
 import { useTranslation } from 'react-i18next';
@@ -17,7 +15,7 @@ const update = (cache, { data: { signIn } }) => {
 };
 
 // Note: 'catch' statement is here due to red warnings made by graphql error response
-const handleOnSubmit = (mutation, history) => async (values) => {
+const handleOnSubmit = (mutation, history) => async values => {
   try {
     await mutation({ variables: { email: values.email, password: values.password } });
     history.push(PAGES.notes);
@@ -36,12 +34,12 @@ const Login = ({ history }) => {
           onSubmit={handleOnSubmit(logIn, history)}
         >
           {({ isValid }) => (
-            <Page>
+            <Page data-testid="loginpage">
               <ErrorMessage error={error} />
               <Form>
-                <InputField label="Email" name="email" />
-                <InputField label="Password" name="password" />
-                <SpinningButton disabled={!isValid || loading} spin={loading} type="submit">
+                <InputField data-testid="email" label="Email" name="email" />
+                <InputField data-testid="password" label="Password" name="password" />
+                <SpinningButton data-testid="signin" disabled={!isValid || loading} spin={loading} type="submit">
                   {t(`Sign${loading ? 'ing' : ''} In`)}
                 </SpinningButton>
               </Form>

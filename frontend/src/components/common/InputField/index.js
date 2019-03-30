@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 import { InputField as StyledInputField, Input } from './styles';
 
 const InputField = ({ name, label, ...props }) => {
@@ -19,6 +20,11 @@ const InputField = ({ name, label, ...props }) => {
       </label>
     </StyledInputField>
   );
+};
+
+InputField.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string,
 };
 
 export default InputField;

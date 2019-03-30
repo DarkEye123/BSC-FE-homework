@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login tests renders 1`] = `
+<main
+  class="sc-bwzfXH frOdhr"
+  data-testid="loginpage"
+>
+  <form
+    class="sc-kGXeez dYYneR"
+  >
+    <div
+      class="sc-bZQynM cCBhlA"
+    >
+      <input
+        class="sc-gzVnrw kuqIpM"
+        data-testid="email"
+        id="email"
+        name="email"
+        value=""
+      />
+      <span />
+      <label
+        data-testid="email"
+        for="Email"
+      >
+        Email
+      </label>
+    </div>
+    <div
+      class="sc-bZQynM cCBhlA"
+    >
+      <input
+        class="sc-gzVnrw kuqIpM"
+        data-testid="password"
+        id="password"
+        name="password"
+        value=""
+      />
+      <span />
+      <label
+        data-testid="password"
+        for="Password"
+      >
+        Password
+      </label>
+    </div>
+    <button
+      class="sc-dnqmqq bsujTy"
+      data-testid="signin"
+      disabled=""
+      type="submit"
+    >
+      Sign In
+    </button>
+  </form>
+</main>
+`;
