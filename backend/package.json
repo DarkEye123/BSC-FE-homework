@@ -1,7 +1,7 @@
 {
-  "name": "BSC-BE-Homework",
+  "name": "bsc-be-homework",
   "version": "1.0.0",
-  "description": "example project for my blog post - how to do signup with graphql-yoga and prisma",
+  "description": "BSC - Backend part",
   "main": "index.js",
   "scripts": {
     "start": "nodemon -e js,graphql -x babel-node src/index.js",
