@@ -76,5 +76,9 @@ npm run storybook
 
 This is just example app. To ease the usage for the reviewer I included it. Be aware, that it considered as a very bad idea for the production.
 
+### Known Issues
+Some plugins doing grammar corrections (like Grammarly) may cause app disfunction.
+Please be sure to not use them, otherwise strange behavior may occur.
+
 **Note
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
